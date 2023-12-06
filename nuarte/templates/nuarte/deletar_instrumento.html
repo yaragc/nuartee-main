@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h2 class="my-4">Deletar Instrumento</h2>
+    <p>Você tem certeza que deseja deletar o instrumento "{{ instrumento.nome }}"?</p>
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger">Sim, deletar</button>
+    </form>
+  </div>
+{% endblock %}

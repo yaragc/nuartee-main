@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2>Gerenciar Instrumentos</h2>
+
+  <!-- Botão para cadastrar novo instrumento -->
+  <a href="{% url 'nuarte:cadastrar_instrumento' %}" class="btn btn-primary mb-3">Cadastrar Novo Instrumento</a>
+
+  <!-- Tabela de instrumentos -->
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Nome do Instrumento</th>
+        <th scope="col">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for instrumento in instrumentos %}
+      <tr>
+        <td>{{ instrumento.nome }}</td>
+        <td>
+          <a href="{% url 'nuarte:detalhes_instrumento' instrumento.id %}" class="btn btn-info btn-sm">Detalhes</a>
+          <a href="{% url 'nuarte:atualizar_instrumento' instrumento.id %}" class="btn btn-info btn-sm">Atualizar</a>
+          <a href="{% url 'nuarte:deletar_instrumento' instrumento.id %}" class="btn btn-danger btn-sm">Deletar</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

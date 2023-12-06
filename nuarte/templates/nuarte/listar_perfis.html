@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Listar Perfis{% endblock %}
+
+{% block content %}
+    <h1>Listar Perfis</h1>
+
+    {% if perfis %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Usuário</th>
+                    <th scope="col">Tipo de Usuário</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for perfil in perfis %}
+                    <tr>
+                        <td>{{ perfil.usuario.username }}</td>
+                        <td>{{ perfil.tipo_usuario }}</td>
+                        <td>
+                            <a href="{% url 'nuarte:atualizar_perfil' perfil.id %}" class="btn btn-info">Atualizar</a>
+                            <a href="{% url 'nuarte:deletar_perfil' perfil.id %}" class="btn btn-danger">Deletar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Nenhum perfil encontrado.</p>
+    {% endif %}
+
+    <a href="{% url 'nuarte:cadastrar_perfil' %}" class="btn btn-success">Cadastrar Novo Perfil</a>
+
+    {% if messages %}
+  <div class="container mt-4">
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+{% endblock %}

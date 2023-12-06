@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block title %}Administração{% endblock %}
+
+{% block content %}
+  <div class="container mt-4">
+    <h2 class="mb-4">Painel de Administração</h2>
+
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Instrumentos</h5>
+            <p class="card-text">Gerenciar instrumentos</p>
+            <a href="{% url 'nuarte:gerenciamento_instrumentos' %}" class="btn btn-primary">Ir para Instrumentos</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Histórico</h5>
+            <p class="card-text">Visualizar histórico de solicitações e devoluções</p>
+            <a href="{% url 'nuarte:listar_historico' %}" class="btn btn-primary">Ir para Histórico</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Perfis</h5>
+            <p class="card-text">Gerenciar perfis de usuários</p>
+            <a href="{% url 'nuarte:listar_perfis' %}" class="btn btn-primary">Ir para Perfis</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Solicitações</h5>
+            <p class="card-text">Aprovar ou rejeitar solicitações de instrumentos</p>
+            <a href="{% url 'nuarte:listar_solicitacoes' %}" class="btn btn-primary">Ir para Solicitações</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .container {
+      max-width: 100%;
+    }
+
+    .card {
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .btn-primary {
+      background-color: #007bff;
+      border-color: #007bff;
+    }
+
+    .btn-primary:hover {
+      background-color: #0056b3;
+      border-color: #0056b3;
+    }
+  </style>
+{% endblock %}

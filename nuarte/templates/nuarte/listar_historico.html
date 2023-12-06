@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container-fluid">
+    <h2 class="my-4 text-center">Histórico de Solicitações</h2>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Data da Solicitação</th>
+            <th>Usuário</th>
+            <th>Instrumento</th>
+            <th>Operação</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for operacao in historico %}
+            <tr>
+              <td>{{ operacao.data_operacao }}</td>
+              <td>{{ operacao.usuario.username }}</td>
+              <td>{{ operacao.instrumento.nome }}</td>
+              <td>{{ operacao.operacao }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    
+    <nav aria-label="Page navigation example" style="margin-top: 40px;">
+      <ul class="pagination justify-content-center">
+        {% if page_obj.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page=1" aria-label="Primeira">
+            <span aria-hidden="true">&laquo;&laquo;</span>
+          </a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Anterior">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        {% endif %}
+        {% for num in page_obj.paginator.page_range %}
+        <li class="page-item{% if num == page_obj.number %} active{% endif %}">
+          <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+        </li>
+        {% endfor %}
+        {% if page_obj.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Próxima">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Última">
+            <span aria-hidden="true">&raquo;&raquo;</span>
+          </a>
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
+
+  <style>
+    body, html {
+      height: 100%;
+    }
+
+    .container-fluid {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    h2 {
+      margin-bottom: 30px;
+    }
+
+    table {
+      width: 80%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    th, td {
+      border: 1px solid #dee2e6;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #007bff;
+      color: #fff;
+    }
+
+    .pagination {
+      margin-top: 20px;
+    }
+
+    .pagination .page-item .page-link {
+      color: #007bff;
+      border: 1px solid #007bff;
+    }
+
+    .pagination .page-item.active .page-link {
+      background-color: #007bff;
+      border: 1px solid #007bff;
+    }
+  </style>
+{% endblock %}

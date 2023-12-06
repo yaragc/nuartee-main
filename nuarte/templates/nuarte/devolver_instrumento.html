@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h2 class="my-4">Devolver Instrumento</h2>
+    
+    <form method="post" action="{% url 'nuarte:devolver_instrumento' instrumento.id %}">
+      {% csrf_token %}
+      <p>Você está prestes a devolver o instrumento: {{ instrumento.nome }}</p>
+      <button type="submit" class="btn btn-danger">Confirmar Devolução</button>
+    </form>
+  </div>
+{% endblock %}

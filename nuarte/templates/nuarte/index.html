@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="container text-center">
+    {% if messages %}
+    <div class="container mt-4">
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+    <h2>Nuarte</h2>
+    <p>Núcleo de Artes do Instituto Federal de Ciência e Tecnologia do Rio Grande do Norte - Campus Pau dos Ferros</p>
+
+    <div class="image-container">
+      <img src="{% static 'img/foto1.jpeg' %}" alt="Evento 1" class="img-fluid my-4 image-item">
+      <img src="{% static 'img/foto2.jpeg' %}" alt="Evento 2" class="img-fluid my-4 image-item">
+      <img src="{% static 'img/foto3.jpeg' %}" alt="Evento 3" class="img-fluid my-4 image-item">
+    </div>
+
+    <p>
+      O Nuarte é o Núcleo de Artes do Instituto Federal de Ciência e Tecnologia do Rio Grande do Norte - Campus Pau dos Ferros. 
+      Nosso objetivo é promover a expressão artística e cultural, proporcionando um ambiente enriquecedor para a comunidade acadêmica.
+
+      A arte desempenha um papel fundamental na formação integral de nossos alunos, estimulando a criatividade, a apreciação estética 
+      e a sensibilidade. Através de eventos culturais e artísticos, buscamos fomentar a diversidade cultural e oferecer oportunidades 
+      para que os estudantes possam explorar e desenvolver seu potencial artístico.
+    </p>
+  </div>
+  
+  <style>
+    .image-container {
+      display: flex;
+      justify-content: space-between;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .image-item {
+      width: 30%;
+    }
+  </style>
+{% endblock %}

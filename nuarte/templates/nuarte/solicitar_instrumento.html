@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h2 class="my-4">Solicitar Instrumento</h2>
+    <form method="post" action="{% url 'nuarte:solicitar_instrumento' %}">
+      {% csrf_token %}
+      <input type="hidden" name="usuario" value="{{ user.id }}">
+      <div class="form-group">
+        <label for="perfil">Selecione o Perfil:</label>
+        <select name="perfil" class="form-control" required>
+          <option value="ALUNO">Aluno</option>
+          <option value="PROFESSOR">Professor</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="instrumento">Selecione o Instrumento:</label>
+        <select name="instrumento" class="form-control" required>
+          {% for instrumento in instrumentos_disponiveis %}
+            <option value="{{ instrumento.id }}">{{ instrumento.nome }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="data_solicitacao">Data de Solicitação:</label>
+        <input type="date" name="data_solicitacao" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Solicitar Instrumento</button>
+    </form>
+  </div>
+{% endblock %}

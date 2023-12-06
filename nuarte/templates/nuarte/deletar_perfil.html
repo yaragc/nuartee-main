@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Deletar Perfil{% endblock %}
+
+{% block content %}
+    <h1>Deletar Perfil</h1>
+    
+    <p>Tem certeza que deseja deletar o perfil de {{ perfil.usuario.username }}?</p>
+    
+    <form method="post">
+        {% csrf_token %}
+        
+        <button type="submit" class="btn btn-danger">Deletar</button>
+    </form>
+    
+    <a href="{% url 'nuarte:listar_perfis' %}" class="btn btn-secondary mt-3">Cancelar</a>
+{% endblock %}
